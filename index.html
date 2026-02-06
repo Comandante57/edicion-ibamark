@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBAMARK | TU GRABAS, NOSOTROS EDITAMOS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@900&family=Archivo+Black&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --main: #00ff66; /* Verde Branding IBAMARK */
+            --black: #000000;
+            --gray: #f3f4f6;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--black);
+            overflow-x: hidden;
+            background-image: radial-gradient(var(--black) 0.5px, transparent 0);
+            background-size: 25px 25px;
+            margin: 0;
+            padding: 0;
+            transition: padding-bottom 0.3s ease;
+        }
+
+        h1, h2, h3, .font-brutal {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.85;
+        }
+
+        /* Brutalism Style */
+        .brutal-card {
+            background: white;
+            border: 4px solid var(--black);
+            box-shadow: 6px 6px 0px var(--black);
+            transition: all 0.1s cubic-bezier(.17,.67,.83,.67);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .brutal-card { border: 5px solid var(--black); box-shadow: 12px 12px 0px var(--black); }
+        }
+
+        .brutal-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 16px 16px 0px var(--main);
+        }
+
+        .brutal-card.selected {
+            background: var(--main);
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px var(--black);
+        }
+
+        .brutal-btn {
+            background: var(--main);
+            color: var(--black);
+            border: 3px solid var(--black);
+            box-shadow: 5px 5px 0px var(--black);
+            font-family: 'Unbounded', sans-serif;
+            transition: all 0.1s;
+            text-align: center;
+        }
+
+        .brutal-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0px 0px 0px var(--black);
+        }
+
+        .marquee-wrap {
+            background: var(--black);
+            color: var(--main);
+            padding: 12px 0;
+            border-top: 5px solid var(--black);
+            border-bottom: 5px solid var(--black);
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .badge {
+            background: var(--black);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .price-label {
+            background: var(--main);
+            border: 3px solid var(--black);
+            color: var(--black);
+            padding: 8px 12px;
+            font-weight: 900;
+            font-size: 1.15rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .outline-text {
+            -webkit-text-stroke: 1.2px var(--black);
+            color: transparent;
+        }
+
+        /* Mobile specific layout fixes */
+        @media (max-width: 640px) {
+            .mobile-header-text { font-size: 3.5rem !important; }
+            .brutal-card { padding: 1.25rem !important; }
+            .nav-logo { font-size: 2.2rem !important; }
+            
+            /* Ajustes para el checkout en móvil */
+            .checkout-container { 
+                margin: 0 10px !important;
+                padding: 15px !important;
+            }
+            .checkout-price-text {
+                font-size: 1.75rem !important;
+            }
+        }
+    </style>
+</head>
+<body id="body-content">
+
+    <!-- Header Socials Bar -->
+    <div class="bg-black text-white py-2 px-4 text-[9px] md:text-xs font-black flex justify-between uppercase tracking-tighter">
+        <a href="https://www.instagram.com/ibamark_marketing/" target="_blank" class="hover:text-[#00ff66] transition-colors">Instagram: @ibamark_marketing</a>
+        <span class="hidden sm:block">ibamark.agency@outlook.com</span>
+        <a href="https://wa.me/525572365913" class="hover:text-[#00ff66]">WhatsApp: +52 55 7236 5913</a>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="bg-white border-b-4 md:border-b-8 border-black sticky top-0 z-[100] px-4 py-3 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl md:text-6xl font-brutal tracking-tighter nav-logo">IBA<span class="text-[#00ff66]">MARK</span></a>
+            <div class="flex flex-col items-end">
+                <span class="text-[9px] md:text-[10px] font-black bg-black text-white px-2 py-0.5 mb-1">AGENCIA DE EDICIÓN</span>
+                <span class="text-[10px] md:text-xs font-bold text-black border-b-2 border-[#00ff66]">COTIZADOR 2026</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="px-6 py-12 md:py-24 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div class="lg:col-span-8">
+                <h1 class="text-5xl md:text-[9rem] font-brutal leading-[0.85] mb-6 mobile-header-text">
+                    TÚ <span class="text-[#00ff66]">GRABAS</span><br>
+                    NOSOTROS<br>
+                    <span class="outline-text">EDITAMOS</span>
+                </h1>
+                <p class="text-lg md:text-3xl font-bold uppercase max-w-2xl border-l-4 md:border-l-8 border-[#00ff66] pl-4 md:pl-6 leading-tight">
+                    No pierdas tiempo editando. Nosotros convertimos tus clips en contenido de alto rendimiento.
+                </p>
+            </div>
+            <div class="lg:col-span-4">
+                <div class="brutal-card p-6 md:p-8 bg-white md:rotate-2 hover:rotate-0">
+                    <h3 class="text-lg font-black mb-4 border-b-4 border-[#00ff66] inline-block">CANALES OFICIALES</h3>
+                    <div class="space-y-4 text-xs md:text-sm font-bold uppercase">
+                        <a href="https://www.instagram.com/ibamark_marketing/" target="_blank" class="flex items-center gap-3 hover:text-[#00ff66] transition-all">
+                            <div class="w-8 h-8 bg-[#00ff66] border-2 border-black flex items-center justify-center">IG</div>
+                            @ibamark_marketing
+                        </a>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-black border-2 border-black text-white flex items-center justify-center">@</div>
+                            ibamark.agency@outlook.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-wrap">
+        <div class="marquee-content font-brutal text-xl md:text-4xl">
+            <span>TÚ GRABAS, NOSOTROS EDITAMOS • REELS • REAL ESTATE • YOUTUBE • ADS • @IBAMARK_MARKETING • TÚ GRABAS, NOSOTROS EDITAMOS • REELS • REAL ESTATE • YOUTUBE • ADS • @IBAMARK_MARKETING • </span>
+            <span>TÚ GRABAS, NOSOTROS EDITAMOS • REELS • REAL ESTATE • YOUTUBE • ADS • @IBAMARK_MARKETING • TÚ GRABAS, NOSOTROS EDITAMOS • REELS • REAL ESTATE • YOUTUBE • ADS • @IBAMARK_MARKETING • </span>
+        </div>
+    </div>
+
+    <!-- Pricing Content -->
+    <main class="px-6 md:px-12 max-w-7xl mx-auto mt-20">
+        
+        <!-- Vertical Content -->
+        <section class="mb-24 md:mb-32">
+            <div class="flex items-baseline gap-3 md:gap-4 mb-10 border-b-4 md:border-b-8 border-black pb-3">
+                <span class="text-3xl md:text-7xl font-brutal">01</span>
+                <h2 class="text-3xl md:text-7xl font-brutal text-[#00ff66]" style="-webkit-text-stroke: 1px black;">REDES SOCIALES</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+                <div onclick="toggle(this, 'Video Express', 800, 1000)" class="brutal-card p-6 md:p-8">
+                    <div class="badge">REELS / TIKTOK</div>
+                    <h3 class="text-xl md:text-2xl font-brutal mb-3">Video Express</h3>
+                    <p class="text-[11px] md:text-xs font-bold mb-6 uppercase text-gray-500 flex-grow">Cortes de silencios, música tendencia y subtítulos automáticos.</p>
+                    <div class="price-label">$800 - $1,000</div>
+                </div>
+                <div onclick="toggle(this, 'Video Dinámico', 1600, 2200)" class="brutal-card p-6 md:p-8">
+                    <div class="badge">STYLE VIRAL</div>
+                    <h3 class="text-xl md:text-2xl font-brutal mb-3">Dinámico / Viral</h3>
+                    <p class="text-[11px] md:text-xs font-bold mb-6 uppercase text-gray-500 flex-grow">Subtítulos animados, SFX, Zoom in/out, B-roll y emojis.</p>
+                    <div class="price-label">$1,600 - $2,200</div>
+                </div>
+                <div onclick="toggle(this, 'Venta / Ads', 2500, 2500)" class="brutal-card p-6 md:p-8">
+                    <div class="badge">CONVERSIÓN</div>
+                    <h3 class="text-xl md:text-2xl font-brutal mb-3">Venta / Ads</h3>
+                    <p class="text-[11px] md:text-xs font-bold mb-6 uppercase text-gray-500 flex-grow">Ganchos visuales fuertes y llamados a la acción (CTA) animados.</p>
+                    <div class="price-label">$2,500</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Estate -->
+        <section class="mb-24 md:mb-32">
+            <div class="flex items-baseline gap-3 md:gap-4 mb-10 border-b-4 md:border-b-8 border-black pb-3">
+                <span class="text-3xl md:text-7xl font-brutal">02</span>
+                <h2 class="text-3xl md:text-7xl font-brutal">INMUEBLES</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
+                <div onclick="toggle(this, 'Showcase Inmueble', 2800, 2800)" class="brutal-card p-6 md:p-10">
+                    <div class="badge">REAL ESTATE VERTICAL</div>
+                    <h3 class="text-2xl md:text-4xl font-brutal mb-4">Showcase Propiedad</h3>
+                    <p class="font-bold mb-8 text-sm md:text-base text-gray-600">Edición de 60s con color cinematográfico y títulos de características técnicos.</p>
+                    <div class="price-label text-xl md:text-2xl">$2,800 MXN</div>
+                </div>
+                <div onclick="toggle(this, 'Recorrido Lujo', 4500, 6000)" class="brutal-card p-6 md:p-10">
+                    <div class="badge">HORIZONTAL PREMIUM</div>
+                    <h3 class="text-2xl md:text-4xl font-brutal mb-4">Recorrido de Lujo</h3>
+                    <p class="font-bold mb-8 text-sm md:text-base text-gray-600">Hasta 5 min, diseño sonoro de ambiente y corrección de color avanzada.</p>
+                    <div class="price-label text-xl md:text-2xl">$4,500 - $6,000 MXN</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube -->
+        <section class="mb-24 md:mb-32">
+            <div class="flex items-baseline gap-3 md:gap-4 mb-10 border-b-4 md:border-b-8 border-black pb-3">
+                <span class="text-3xl md:text-7xl font-brutal">03</span>
+                <h2 class="text-3xl md:text-7xl font-brutal text-[#00ff66]" style="-webkit-text-stroke: 1px black;">YouTube</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
+                <div onclick="toggle(this, 'Video YT Estándar', 3500, 5000)" class="brutal-card p-6 md:p-10">
+                    <h3 class="text-2xl md:text-3xl font-brutal mb-4">Video YT Estándar</h3>
+                    <p class="font-bold mb-6 text-xs md:text-sm text-gray-600">Limpieza de audio, cortes, títulos básicos y transiciones limpias.</p>
+                    <div class="price-label">$3,500 - $5,000</div>
+                </div>
+                <div onclick="toggle(this, 'High Level Docu', 8000, 12000)" class="brutal-card p-6 md:p-10">
+                    <h3 class="text-2xl md:text-3xl font-brutal mb-4">High-Level Documentary</h3>
+                    <p class="font-bold mb-6 text-xs md:text-sm text-gray-600">Investigación visual profunda, gráficos en pantalla y ritmo rápido.</p>
+                    <div class="price-label">$8,000 - $12,000</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packs -->
+        <section class="mb-32 bg-black text-white p-6 md:p-16 border-[6px] md:border-[10px] border-[#00ff66] brutal-shadow">
+            <h2 class="text-3xl md:text-7xl font-brutal mb-10 text-center text-[#00ff66]">PLANES MENSUALES</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div onclick="toggle(this, 'Plan Bronce', 10000, 10000)" class="p-6 md:p-8 border-4 border-[#00ff66] hover:bg-[#00ff66] hover:text-black transition-all cursor-pointer group">
+                    <h3 class="text-2xl font-brutal mb-3 group-hover:italic transition-all">BRONCE</h3>
+                    <p class="font-bold mb-6 text-[10px] opacity-80 uppercase">8 Reels Dinámicos al mes.</p>
+                    <div class="text-3xl md:text-4xl font-black">$10,000</div>
+                </div>
+                <div onclick="toggle(this, 'Plan Plata', 16500, 16500)" class="p-6 md:p-8 border-4 border-[#00ff66] hover:bg-[#00ff66] hover:text-black transition-all cursor-pointer group">
+                    <h3 class="text-2xl font-brutal mb-3 group-hover:italic transition-all">PLATA</h3>
+                    <p class="font-bold mb-6 text-[10px] opacity-80 uppercase">12 Reels + 4 Portadas/Thumbnail.</p>
+                    <div class="text-3xl md:text-4xl font-black">$16,500</div>
+                </div>
+                <div onclick="toggle(this, 'Plan Oro', 22000, 22000)" class="p-6 md:p-8 border-4 border-[#00ff66] hover:bg-[#00ff66] hover:text-black transition-all cursor-pointer group">
+                    <h3 class="text-2xl font-brutal mb-3 group-hover:italic transition-all">ORO</h3>
+                    <p class="font-bold mb-6 text-[10px] opacity-80 uppercase">4 Videos Casas + 8 Reels de Zona.</p>
+                    <div class="text-3xl md:text-4xl font-black">$22,000</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-16 md:py-24 px-6 border-t-[10px] border-[#00ff66]">
+        <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+            <h2 class="text-5xl md:text-9xl font-brutal text-[#00ff66] mb-4">IBAMARK</h2>
+            <p class="text-2xl md:text-4xl font-brutal italic text-white mb-10">TÚ GRABAS, NOSOTROS EDITAMOS</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl border-t border-white/20 pt-10">
+                <a href="https://www.instagram.com/ibamark_marketing/" target="_blank" class="flex flex-col items-center group">
+                    <span class="text-[10px] text-[#00ff66] font-black mb-1 tracking-widest">INSTAGRAM</span>
+                    <span class="text-lg font-bold group-hover:underline">@ibamark_marketing</span>
+                </a>
+                <div class="flex flex-col items-center">
+                    <span class="text-[10px] text-[#00ff66] font-black mb-1 tracking-widest">EMAIL</span>
+                    <span class="text-lg font-bold">ibamark.agency@outlook.com</span>
+                </div>
+                <a href="https://wa.me/525572365913" class="flex flex-col items-center group">
+                    <span class="text-[10px] text-[#00ff66] font-black mb-1 tracking-widest">WHATSAPP</span>
+                    <span class="text-lg font-bold group-hover:underline">+52 55 7236 5913</span>
+                </a>
+            </div>
+
+            <div class="mt-20 text-[10px] font-black opacity-40 uppercase tracking-widest">
+                MÉXICO • © 2024 IBAMARK • VISUAL PERFORMANCE AGENCY
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Checkout Bar Optimized for Mobile -->
+    <div id="checkout" class="fixed bottom-0 left-0 right-0 p-2 md:p-10 z-[200] translate-y-full transition-transform duration-500">
+        <div class="checkout-container max-w-5xl mx-auto bg-white border-[4px] md:border-[6px] border-black brutal-shadow p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6">
+            
+            <!-- Info Side -->
+            <div class="w-full md:w-auto flex flex-col items-center md:items-start text-center md:text-left overflow-hidden">
+                <p class="text-[8px] md:text-[9px] font-black uppercase mb-1 opacity-60">Servicio seleccionado:</p>
+                <div id="cart-text" class="text-[10px] md:text-sm font-extrabold truncate w-full md:max-w-xl italic text-gray-500 mb-2">...</div>
+                
+                <div class="flex items-center gap-3">
+                    <span id="price-total" class="text-2xl md:text-5xl font-brutal text-black checkout-price-text tracking-tighter whitespace-nowrap">$0</span>
+                    <div class="text-[8px] md:text-[9px] font-black leading-tight border-l-2 md:border-l-4 border-[#00ff66] pl-2 uppercase text-left">
+                        MXN ESTIMADO<br>POR IBAMARK
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Side -->
+            <button onclick="send()" class="brutal-btn w-full md:w-auto px-6 md:px-12 py-3 md:py-6 text-lg md:text-2xl font-brutal hover:bg-black hover:text-[#00ff66] whitespace-nowrap">
+                COTIZAR POR WHATSAPP →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let minT = 0;
+        let maxT = 0;
+
+        function toggle(el, name, min, max) {
+            // Verificar si el elemento ya está seleccionado
+            const isSelected = el.classList.contains('selected');
+            
+            // Limpiar selección previa (Selector único)
+            document.querySelectorAll('.brutal-card, [onclick^="toggle"]').forEach(card => {
+                card.classList.remove('selected');
+                card.classList.remove('bg-[#00ff66]');
+                card.classList.remove('text-black');
+            });
+            
+            if (isSelected) {
+                // Si se hace clic en el ya seleccionado, se deselecciona todo
+                cart = [];
+                minT = 0;
+                maxT = 0;
+            } else {
+                // Seleccionar solo el nuevo elemento
+                cart = [{name, min, max}];
+                minT = min;
+                maxT = max;
+                el.classList.add('selected');
+                
+                // Si es un plan mensual (que tiene estilos especiales en el HTML)
+                if (el.parentElement.parentElement.tagName === 'SECTION' && el.classList.contains('p-6')) {
+                   el.classList.add('bg-[#00ff66]');
+                   el.classList.add('text-black');
+                }
+            }
+            update();
+        }
+
+        function update() {
+            const bar = document.getElementById('checkout');
+            const total = document.getElementById('price-total');
+            const text = document.getElementById('cart-text');
+            const body = document.getElementById('body-content');
+
+            if (cart.length > 0) {
+                bar.classList.remove('translate-y-full');
+                text.innerText = cart[0].name;
+                
+                let priceDisplay = (minT === maxT) ? 
+                    `$${minT.toLocaleString()}` : 
+                    `$${minT.toLocaleString()}-$${maxT.toLocaleString()}`;
+                
+                total.innerText = priceDisplay;
+                
+                // Ajustamos el tamaño de fuente si el precio es muy largo para móvil
+                if(window.innerWidth < 768 && priceDisplay.length > 10) {
+                    total.style.fontSize = "1.5rem";
+                } else if(window.innerWidth < 768) {
+                    total.style.fontSize = "1.75rem";
+                }
+
+                // Ajuste de padding dinámico
+                const barHeight = bar.offsetHeight;
+                body.style.paddingBottom = (barHeight + 20) + "px";
+            } else {
+                bar.classList.add('translate-y-full');
+                body.style.paddingBottom = "0";
+            }
+        }
+
+        function send() {
+            if (cart.length === 0) return;
+            
+            const phone = "525572365913";
+            let msg = "*CONSULTA DE SERVICIO - IBAMARK*\n\n";
+            msg += "¡Hola! Me interesa el siguiente servicio:\n\n";
+            
+            const s = cart[0];
+            const p = (s.min === s.max) ? `$${s.min.toLocaleString()}` : `$${s.min.toLocaleString()}-$${s.max.toLocaleString()}`;
+            msg += `📌 *${s.name.toUpperCase()}*\n`;
+            msg += `💰 *Precio estimado: ${p} MXN*`;
+
+            msg += "\n\nMi Instagram: @";
+            msg += "\n\n_Tú grabas, nosotros editamos._";
+
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        window.addEventListener('resize', update);
+    </script>
+</body>
+</html>
