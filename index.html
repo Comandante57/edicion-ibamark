@@ -107,6 +107,19 @@
             text-transform: uppercase;
         }
 
+        .badge-recommended {
+            background: var(--black);
+            color: var(--main);
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            border: 2px solid var(--black);
+            transform: rotate(2deg);
+        }
+
         .price-label {
             background: var(--main);
             border: 3px solid var(--black);
@@ -215,7 +228,9 @@
                     <p class="text-[11px] md:text-xs font-bold mb-6 uppercase text-gray-500 flex-grow">Cortes de silencios, música tendencia y subtítulos automáticos.</p>
                     <div class="price-label">$800 - $1,000</div>
                 </div>
+                <!-- TARJETA RECOMENDADA -->
                 <div onclick="toggle(this, 'Video Dinámico', 1600, 2200)" class="brutal-card p-6 md:p-8">
+                    <div class="badge-recommended">RECOMENDADO</div>
                     <div class="badge">STYLE VIRAL</div>
                     <h3 class="text-xl md:text-2xl font-brutal mb-3">Dinámico / Viral</h3>
                     <p class="text-[11px] md:text-xs font-bold mb-6 uppercase text-gray-500 flex-grow">Subtítulos animados, SFX, Zoom in/out, B-roll y emojis.</p>
